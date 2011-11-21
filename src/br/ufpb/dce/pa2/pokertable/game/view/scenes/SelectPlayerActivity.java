@@ -5,6 +5,7 @@ import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.Player;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * Main Activity
@@ -49,9 +51,10 @@ public class SelectPlayerActivity extends Activity {
 		back = (ImageButton) findViewById(R.button.back_button);
 		audio = (ImageButton) findViewById(R.button.audio_button);
 		addPlayer = (Button) findViewById(R.button.buttonaddplayer);
+		newGame = (Button) findViewById(R.button.buttonnewgame); 
 		name = (EditText) findViewById(R.id.camponome);
 		
-		table = new TableDummy(200);
+		table = TableDummy.getInstance(200);
 
 		// toca a musica inicial
 		sm.playSound(0);
@@ -145,6 +148,7 @@ public class SelectPlayerActivity extends Activity {
 					sm.stopSounds();
 					Player player = new Player(name.getText().toString(), playerSelect);
 					table.sit(player);
+					System.out.println("Adicionou ......");
 				}
 			});
 		} catch (NullPointerException np) {
@@ -156,7 +160,9 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					table.begin();
+					Intent i = new Intent(SelectPlayerActivity.this,
+							GameActivity.class);
+					startActivity(i);
 				}
 			});
 		} catch (NullPointerException np) {

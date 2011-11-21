@@ -14,7 +14,7 @@ public class CircularList{
 
 	public boolean add(Player o){
 		for(int i = 0; i < lista.length; i++){
-			if(lista[i].equals(null)){
+			if(lista[i] == null){
 				lista[i] = o;
 				this.size++;
 				return true;
@@ -61,7 +61,7 @@ public class CircularList{
 		String string = "";
 		for(int i = 0; i < lista.length; i++)
 			if(!lista[i].equals(null))
-				string += "Nome: " + lista[i].getName() + "Posição: " + i + "\n";
+				string += "Nome: " + lista[i].getName() + "Posiï¿½ï¿½o: " + i + "\n";
 		return string;
 	}
 
