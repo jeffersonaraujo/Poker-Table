@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<AbsoluteLayout
+		android:layout_height="fill_parent"
+		android:id="@+layout/playerselectlayout"
+		android:layout_width="fill_parent"
+		android:background="@drawable/masterplayer"
+		android:layout_x="0dip"
+		android:layout_y="0dip">
+		<ImageButton
+			android:layout_height="40dip"
+			android:background="@drawable/girl"
+			android:id="@+button/selectplayerone"
+			android:layout_width="40dip"
+			android:layout_x="235dip"
+			android:layout_y="17dip"></ImageButton>
+		<ImageButton
+			android:layout_height="40dip"
+			android:background="@drawable/menone"
+			android:id="@+button/selectplayertwo"
+			android:layout_width="40dip"
+			android:layout_x="280dip"
+			android:layout_y="17dip"></ImageButton>
+		<ImageButton
+			android:layout_height="40dip"
+			android:background="@drawable/mentwo"
+			android:id="@+button/selectplayerthree"
+			android:layout_width="40dip"
+			android:layout_x="325dip"
+			android:layout_y="17dip"></ImageButton>
+		<ImageButton
+			android:layout_height="40dip"
+			android:background="@drawable/menthree"
+			android:id="@+button/selectplayerfour"
+			android:layout_width="40dip"
+			android:layout_x="370dip"
+			android:layout_y="17dip"></ImageButton>
+		<ImageButton
+			android:layout_height="35dip"
+			android:background="@drawable/back"
+			android:id="@+button/back_button"
+			android:layout_width="35dip"
+			android:layout_x="13dip"
+			android:layout_y="275dip"></ImageButton>
+		<ImageButton
+			android:layout_height="35dip"
+			android:background="@drawable/audio"
+			android:id="@+button/audio_button"
+			android:layout_width="35dip"
+			android:layout_x="60dip"
+			android:layout_y="275dip"></ImageButton>
+
+	</AbsoluteLayout><RelativeLayout
+        android:id="@+layout/camposloginlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10px"
+        android:paddingTop="45px" >
+
+        <TextView
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/camponome"
+            android:text="Name:"
+            android:textColor="@android:color/black"
+            android:textSize="5pt" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/camponome"
+            android:layout_width="135px"
+            android:layout_height="28px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/nome" >
+        </EditText>
+
+        <Button
+            android:id="@+button/buttonnewgame"
+            android:layout_width="70px"
+            android:layout_height="28px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/camponome"
+            android:text="New Game"
+            android:textSize="5pt" >
+        </Button>
+
+        <Button
+            android:id="@+button/buttonaddplayer"
+            android:layout_width="70px"
+            android:layout_height="28px"
+            android:layout_alignLeft="@+id/camponome"
+            android:layout_below="@+id/camponome"
+            android:text="Add Player"
+            android:textSize="5pt" >
+        </Button>
+    </RelativeLayout>
+
+</AbsoluteLayout>

@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
@@ -39,8 +40,8 @@ import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 public class GameActivity extends BaseGameActivity {
 
 	// variaveis da camera
-	private float cameraWidth;
-	private float cameraHeight;
+	private int cameraWidth;
+	private int cameraHeight;
 	private Camera mCamera;
 	
 
@@ -68,11 +69,10 @@ public class GameActivity extends BaseGameActivity {
 	// carrega a engine
 	public Engine onLoadEngine() {
 
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
+		Display display = getWindowManager().getDefaultDisplay();
 		// se adapta a tela de qualquer aparelho
-		cameraWidth = dm.widthPixels;
-		cameraHeight = dm.heightPixels;
+		cameraWidth = display.getWidth();
+		cameraHeight = display.getHeight();
 
 		// cria a camera
 		mCamera = new Camera(0, 0, cameraWidth, cameraHeight);
@@ -90,7 +90,7 @@ public class GameActivity extends BaseGameActivity {
 
 		// cria o objeto de textura, que é onde guardamos as imagens.
 		// esses valores tem que ser na base de 2 (2, 4, 8 ...)
-		this.mTexture = new BitmapTextureAtlas(1024, 1024,
+		this.mTexture = new BitmapTextureAtlas(512, 512,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		// define um caminho padrao dentro da pasta /assets para as imagens
@@ -98,7 +98,7 @@ public class GameActivity extends BaseGameActivity {
 
 		// cria um objeto que adiciona a imagem na texture e aponta para ela
 		this.mRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-				this.mTexture, this, "layouttable.png", 0, 0);
+				this.mTexture, this, "layouttablesmall.png", 0, 0);
 
 		// carrega a textura na engine para poder ser usada
 		this.mEngine.getTextureManager().loadTexture(this.mTexture);
@@ -152,7 +152,7 @@ public class GameActivity extends BaseGameActivity {
 
 	public Scene onLoadScene() {
 		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(new Player("Joao", 1000), 20, 2);		
+		//mytable = new TableDummy(new Player("Joao", 1000), 20, 2);		
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();
