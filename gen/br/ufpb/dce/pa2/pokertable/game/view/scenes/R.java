@@ -33,22 +33,21 @@ public final class R {
         public static final int aboutinfo=0x7f020001;
         public static final int audio=0x7f020002;
         public static final int back=0x7f020003;
-        public static final int d=0x7f020004;
-        public static final int exit=0x7f020005;
-        public static final int facebook=0x7f020006;
-        public static final int girl=0x7f020007;
-        public static final int help=0x7f020008;
-        public static final int icon=0x7f020009;
-        public static final int layouttable=0x7f02000a;
-        public static final int master=0x7f02000b;
-        public static final int masterplayer=0x7f02000c;
-        public static final int menone=0x7f02000d;
-        public static final int menthree=0x7f02000e;
-        public static final int mentwo=0x7f02000f;
-        public static final int mute=0x7f020010;
-        public static final int newgame=0x7f020011;
-        public static final int splash=0x7f020012;
-        public static final int twitter=0x7f020013;
+        public static final int exit=0x7f020004;
+        public static final int facebook=0x7f020005;
+        public static final int girl=0x7f020006;
+        public static final int help=0x7f020007;
+        public static final int icon=0x7f020008;
+        public static final int layouttable=0x7f020009;
+        public static final int master=0x7f02000a;
+        public static final int masterplayer=0x7f02000b;
+        public static final int menone=0x7f02000c;
+        public static final int menthree=0x7f02000d;
+        public static final int mentwo=0x7f02000e;
+        public static final int mute=0x7f02000f;
+        public static final int newgame=0x7f020010;
+        public static final int splash=0x7f020011;
+        public static final int twitter=0x7f020012;
     }
     public static final class id {
         public static final int absoluteLayout1=0x7f070000;
