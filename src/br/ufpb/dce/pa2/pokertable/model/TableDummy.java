@@ -41,8 +41,8 @@ public class TableDummy implements ITable{
 	@Override
 	public void sit(Player player) {
 		this.players.add(player);
-		this.playersOnTurn.add(player);
-		autoBlind(player);
+		//this.playersOnTurn.add(player);
+		//autoBlind(player);
 	}
 
 	public void autoBlind(Player player){
