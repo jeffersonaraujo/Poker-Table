@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/master"
+	android:id="@+id/absoluteLayout1"
+	android:layout_x="-1dip"
+	android:layout_y="1dip">
+	
+<RelativeLayout
+	android:id="@+layout/botoeslayout"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:padding="8px"
+>
+
+<Button
+	android:id="@+button/buttonnewgame"
+	android:layout_width="220px"
+	android:layout_height="65px"
+	android:background="@drawable/newgame"
+	android:layout_alignParentRight="true"
+>
+</Button>
+
+<Button
+android:id="@+button/buttonabout"
+android:layout_width="220px"
+android:layout_height="65px"
+android:background="@drawable/about"
+android:layout_alignParentRight="true"
+android:layout_below="@+button/buttonnewgame"
+>
+</Button>
+
+<Button
+android:id="@+button/buttonhelp"
+android:layout_width="220px"
+android:layout_height="65px"
+android:background="@drawable/help"
+android:layout_alignParentRight="true"
+android:layout_below="@+button/buttonabout"
+>
+</Button>
+
+<Button
+android:id="@+button/buttonexit"
+android:layout_width="220px"
+android:layout_height="65px"
+android:background="@drawable/exit"
+android:layout_alignParentRight="true"
+android:layout_below="@+button/buttonhelp"
+>
+</Button>
+
+</RelativeLayout>
+
+<ImageButton
+			android:background="@drawable/facebook"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+button/facebook"
+			android:layout_x="14dip"
+			android:layout_y="580dip">
+</ImageButton>
+
+<ImageButton
+			android:background="@drawable/twitter"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+button/twitter"
+			android:layout_x="74dip"
+			android:layout_y="580dip">
+</ImageButton>
+
+</AbsoluteLayout>
