@@ -1,6 +1,7 @@
 package br.ufpb.dce.pa2.pokertable.model;
 
 public class TableDummy implements ITable{
+	private static TableDummy tableDummySingleton;
 	private CircularList players;
 	private int dealerPosition;
 	private int currentPlayerPosition;
@@ -10,13 +11,13 @@ public class TableDummy implements ITable{
 	private int minimumBet;
 	private CircularList playersOnTurn;
 
-	public TableDummy(int minimumBet) {
+	private TableDummy(int minimumBet) {
 		this();
 		this.minimumBet = minimumBet;
 		this.begin();
 	}
 
-	public TableDummy() {
+	private TableDummy() {
 		players = new CircularList();
 		dealerPosition = 0;
 		pot = 0;
@@ -186,5 +187,12 @@ public class TableDummy implements ITable{
 	
 	public String toString(){
 		return players.toString();
+	}
+	
+	public static ITable getInstance(int minimumBet){
+		if(tableDummySingleton == null){
+			tableDummySingleton = new TableDummy(minimumBet);
+		}
+		return tableDummySingleton;
 	}
 }
