@@ -14,3 +14,4 @@ bin/
 *.o
 *.so
 R.java
+project.properties
