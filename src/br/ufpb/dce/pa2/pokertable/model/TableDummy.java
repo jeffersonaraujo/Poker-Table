@@ -12,6 +12,15 @@ public class TableDummy implements ITable{
 	private int currentTurnBet;
 	private int minimumBet;
 	private List<Player> playersOnTurn;
+	
+	public TableDummy(Player player, int minimumBet) {
+		this();
+		this.minimumBet = minimumBet;
+		players.add(player);
+		this.begin();
+
+		
+	}
 
 	public TableDummy() {
 		players = new LinkedList<Player>();
@@ -20,10 +29,6 @@ public class TableDummy implements ITable{
 		currentTurnPot = 0;
 		currentTurnBet = 0;
 		minimumBet = 0;
-		players.add(new Player("Joãzinho", 18, 500));
-		players.add(new Player("Zezinho", 19, 1000));
-		players.add(new Player("Luizinho", 19, 750));
-		players.add(new Player("Juninho", 20, 1250));
 		playersOnTurn = players;
 	}
 	

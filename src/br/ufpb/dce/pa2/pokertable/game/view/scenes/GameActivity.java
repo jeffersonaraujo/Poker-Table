@@ -15,8 +15,6 @@ import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextur
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
-import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +24,9 @@ import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
+import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
  * Game Activity
@@ -39,6 +40,7 @@ public class GameActivity extends BaseGameActivity {
 	private float cameraWidth;
 	private float cameraHeight;
 	private Camera mCamera;
+	
 
 	// variaveis utilizadas para o sprite da mesa
 	private TextureRegion mRegion;
@@ -58,6 +60,9 @@ public class GameActivity extends BaseGameActivity {
 	private BitmapTextureAtlas mPlayerTexture;
 
 	private Boolean sair;
+	
+	//Atributos relacionados a logica do jogo
+	private ITable mytable;
 
 	// carrega a engine
 	public Engine onLoadEngine() {
@@ -145,6 +150,9 @@ public class GameActivity extends BaseGameActivity {
 	}
 
 	public Scene onLoadScene() {
+		//cria uma mesa de jogo dummy
+		mytable = new TableDummy(20);		
+		
 		// cria a cena do jogo
 		final Scene scene = new Scene();
 

@@ -5,7 +5,7 @@ package br.ufpb.dce.pa2.pokertable.model;
  * @author Vicente Neto
  *
  */
-interface ITable {
+public interface ITable {
 	/**
 	 * Sets the initial configuration of the table
 	 */
