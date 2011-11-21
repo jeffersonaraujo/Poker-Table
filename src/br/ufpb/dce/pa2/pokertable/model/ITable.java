@@ -12,6 +12,12 @@ public interface ITable {
 	void begin();
 	
 	/**
+	 * 
+	 * @param player
+	 */
+	void sit(Player player);
+	
+	/**
 	 * Sets the minimum bet of the table
 	 * @param minimumBet the minimum bet of the table
 	 */
