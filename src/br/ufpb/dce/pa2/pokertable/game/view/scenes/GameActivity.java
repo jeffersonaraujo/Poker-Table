@@ -26,6 +26,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.Player;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
@@ -151,7 +152,7 @@ public class GameActivity extends BaseGameActivity {
 
 	public Scene onLoadScene() {
 		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(20);		
+		mytable = new TableDummy(new Player("Joao", 1000), 20);		
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();
