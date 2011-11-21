@@ -31,5 +31,9 @@ public class Player{
 	
 	public void setMoney(int money) {
 		this.money = money;
+	}
+
+	public void subMoney(int value) {
+		this.money = this.money - value;
 	}	
 }
