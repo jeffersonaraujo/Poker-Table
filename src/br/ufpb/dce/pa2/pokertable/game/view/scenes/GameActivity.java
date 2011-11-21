@@ -15,6 +15,8 @@ import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextur
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
+import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,7 +26,6 @@ import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
-import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.Player;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
@@ -55,12 +56,11 @@ public class GameActivity extends BaseGameActivity {
 
 	// variavel utilizadas para o som
 	private static SoundManager sm;
+	private Boolean sair;
 
 	// variaveis utilizadas para o sprite do jogador
 	private TextureRegion mPlayerRegion;
 	private BitmapTextureAtlas mPlayerTexture;
-
-	private Boolean sair;
 	
 	//Atributos relacionados a logica do jogo
 	private ITable mytable;
@@ -152,7 +152,7 @@ public class GameActivity extends BaseGameActivity {
 
 	public Scene onLoadScene() {
 		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(new Player("Joao", 1000), 20,1);		
+		mytable = new TableDummy(new Player("Joao", 1000), 20, 2);		
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();
@@ -177,6 +177,7 @@ public class GameActivity extends BaseGameActivity {
 		this.mSprite = new Sprite(100, 10, this.mPlayerRegion);
 		// adiciona na cena
 		scene.attachChild(mSprite);
+		
 
 		// retorna a cena para a engine ser executada
 		return scene;

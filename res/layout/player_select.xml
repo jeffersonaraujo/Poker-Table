@@ -73,33 +73,19 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:layout_below="@+id/nome"></EditText>
-		<TextView
-			android:id="@+id/aposta"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Initial Bet:"
-			android:textColor="@android:color/black"
-			android:layout_alignLeft="@+id/campoaposta"
-			android:layout_below="@+id/camponome"></TextView>
-		<EditText
-			android:id="@+id/campoaposta"
+		<Button
+			android:id="@+button/buttonaddplayer"
 			android:layout_width="140px"
+			android:text = "Start Game"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
-			android:layout_below="@+id/aposta"></EditText>
-		<TextView
-			android:id="@+id/ficha"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Card:"
-			android:textColor="@android:color/black"
-			android:layout_alignLeft="@+id/camponome"
-			android:layout_below="@+id/camponome"></TextView>
-		<EditText
-			android:id="@+id/campoficha"
+			android:layout_below="@+id/camponome"></Button>
+		<Button
+			android:id="@+button/buttonstartgame"
 			android:layout_width="140px"
+			android:text = "Add Player"
 			android:layout_height="wrap_content"
 			android:layout_alignLeft="@+id/camponome"
-			android:layout_below="@+id/ficha"></EditText>
+			android:layout_below="@+id/camponome"></Button>
 	</RelativeLayout>
 </AbsoluteLayout>
