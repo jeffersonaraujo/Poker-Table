@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 /**
@@ -20,6 +21,7 @@ import android.widget.ImageButton;
 public class SelectPlayerActivity extends Activity {
 
 	private ImageButton playerOne, playerTwo, playerThree, playerFour, back, audio;
+	private Button addPlayer;
 	private int cont;
 
 	public static int playerSelect;
@@ -39,6 +41,7 @@ public class SelectPlayerActivity extends Activity {
 		playerFour = (ImageButton) findViewById(R.button.selectplayerfour);
 		back = (ImageButton) findViewById(R.button.back_button);
 		audio = (ImageButton) findViewById(R.button.audio_button);
+		addPlayer = (Button) findViewById(R.button.buttonaddplayer);
 
 		// toca a musica inicial
 		sm.playSound(0);
@@ -135,6 +138,17 @@ public class SelectPlayerActivity extends Activity {
 			});
 		} catch (NullPointerException np) {
 			Log.e("Null","audio button is null. See the names of the IDs in player_select.xml" + np);
+		}
+		
+		try {
+			addPlayer.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					sm.stopSounds();
+				}
+			});
+		} catch (NullPointerException np) {
+			Log.e("Null","newPlayer button is null. See the names of the IDs in player_select.xml" + np);
 		}
 
 	}

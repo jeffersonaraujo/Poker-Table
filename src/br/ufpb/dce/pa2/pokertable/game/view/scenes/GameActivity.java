@@ -7,6 +7,7 @@ import org.anddev.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.anddev.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.sprite.Sprite;
+import org.anddev.andengine.entity.sprite.TiledSprite;
 import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
@@ -16,6 +17,7 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
+import br.ufpb.dce.pa2.pokertable.game.view.scenes.R.button;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -25,6 +27,7 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -52,12 +55,11 @@ public class GameActivity extends BaseGameActivity {
 
 	// variavel utilizadas para o som
 	private static SoundManager sm;
+	private Boolean sair;
 
 	// variaveis utilizadas para o sprite do jogador
 	private TextureRegion mPlayerRegion;
 	private BitmapTextureAtlas mPlayerTexture;
-
-	private Boolean sair;
 
 	// carrega a engine
 	public Engine onLoadEngine() {
@@ -168,6 +170,7 @@ public class GameActivity extends BaseGameActivity {
 		this.mSprite = new Sprite(100, 10, this.mPlayerRegion);
 		// adiciona na cena
 		scene.attachChild(mSprite);
+		
 
 		// retorna a cena para a engine ser executada
 		return scene;
