@@ -152,7 +152,7 @@ public class GameActivity extends BaseGameActivity {
 
 	public Scene onLoadScene() {
 		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(new Player("Joao", 1000), 20);		
+		mytable = new TableDummy(new Player("Joao", 1000), 20,1);		
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();
