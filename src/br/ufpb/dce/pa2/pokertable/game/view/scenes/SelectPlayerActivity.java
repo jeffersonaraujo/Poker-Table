@@ -50,6 +50,8 @@ public class SelectPlayerActivity extends Activity {
 		audio = (ImageButton) findViewById(R.button.audio_button);
 		addPlayer = (Button) findViewById(R.button.buttonaddplayer);
 		name = (EditText) findViewById(R.id.camponome);
+		
+		table = new TableDummy(200);
 
 		// toca a musica inicial
 		sm.playSound(0);
@@ -141,6 +143,8 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
+					Player player = new Player(name.getText().toString(), playerSelect);
+					table.sit(player);
 				}
 			});
 		} catch (NullPointerException np) {
@@ -152,8 +156,7 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					table = new TableDummy(new Player(name.getText().toString(), 1000), 20, 2);
-					table.sit(new Player(name.getText().toString()));
+					table.begin();
 				}
 			});
 		} catch (NullPointerException np) {

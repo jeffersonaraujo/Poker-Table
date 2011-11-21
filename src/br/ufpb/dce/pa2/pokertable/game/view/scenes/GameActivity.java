@@ -27,8 +27,6 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
-import br.ufpb.dce.pa2.pokertable.model.Player;
-import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
  * Game Activity
@@ -150,9 +148,7 @@ public class GameActivity extends BaseGameActivity {
 		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
 	}
 
-	public Scene onLoadScene() {
-		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(new Player("Joao", 1000), 20, 2);		
+	public Scene onLoadScene() {	
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();

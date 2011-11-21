@@ -10,11 +10,9 @@ public class TableDummy implements ITable{
 	private int minimumBet;
 	private CircularList playersOnTurn;
 
-	public TableDummy(Player player, int minimumBet, int position) {
+	public TableDummy(int minimumBet) {
 		this();
 		this.minimumBet = minimumBet;
-		this.dealerPosition = position;
-		players.add(player);
 		this.begin();
 	}
 
@@ -188,15 +186,5 @@ public class TableDummy implements ITable{
 	
 	public String toString(){
 		return players.toString();
-	}
-
-	public static void main(String[] args) {
-		TableDummy td = new TableDummy();
-		td.sit(new Player("Vicente"));
-		td.sit(new Player("Fillippe"));
-		td.sit(new Player("Thiago"));
-		td.sit(new Player("Raoni"));
-		
-		System.out.println(td.toString());
 	}
 }
