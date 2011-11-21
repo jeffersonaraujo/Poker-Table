@@ -1,6 +1,9 @@
 package br.ufpb.dce.pa2.pokertable.game.view.scenes;
 
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
+import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.Player;
+import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -10,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 /**
@@ -21,12 +25,15 @@ import android.widget.ImageButton;
 public class SelectPlayerActivity extends Activity {
 
 	private ImageButton playerOne, playerTwo, playerThree, playerFour, back, audio;
-	private Button addPlayer;
+	private Button addPlayer, newGame;
+	private EditText name;
 	private int cont;
 
 	public static int playerSelect;
 	public static boolean mute;
 	private static SoundManager sm;
+	
+	private ITable table;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,6 +49,7 @@ public class SelectPlayerActivity extends Activity {
 		back = (ImageButton) findViewById(R.button.back_button);
 		audio = (ImageButton) findViewById(R.button.audio_button);
 		addPlayer = (Button) findViewById(R.button.buttonaddplayer);
+		name = (EditText) findViewById(R.id.camponome);
 
 		// toca a musica inicial
 		sm.playSound(0);
@@ -52,9 +60,6 @@ public class SelectPlayerActivity extends Activity {
 				public void onClick(View v) {
 					sm.stopSounds();
 					playerSelect = 1;
-					Intent i = new Intent(SelectPlayerActivity.this,
-							GameActivity.class);
-					startActivity(i);
 				}
 			});
 		} catch (NullPointerException np) {
@@ -67,9 +72,6 @@ public class SelectPlayerActivity extends Activity {
 				public void onClick(View v) {
 					sm.stopSounds();
 					playerSelect = 2;
-					Intent i = new Intent(SelectPlayerActivity.this,
-							GameActivity.class);
-					startActivity(i);
 				}
 			});
 		} catch (NullPointerException np) {
@@ -82,9 +84,6 @@ public class SelectPlayerActivity extends Activity {
 				public void onClick(View v) {
 					sm.stopSounds();
 					playerSelect = 3;
-					Intent i = new Intent(SelectPlayerActivity.this,
-							GameActivity.class);
-					startActivity(i);
 				}
 			});
 		} catch (NullPointerException np) {
@@ -97,9 +96,6 @@ public class SelectPlayerActivity extends Activity {
 				public void onClick(View v) {
 					sm.stopSounds();
 					playerSelect = 4;
-					Intent i = new Intent(SelectPlayerActivity.this,
-							GameActivity.class);
-					startActivity(i);
 				}
 			});
 		} catch (NullPointerException np) {
@@ -145,6 +141,19 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
+				}
+			});
+		} catch (NullPointerException np) {
+			Log.e("Null","newPlayer button is null. See the names of the IDs in player_select.xml" + np);
+		}
+		
+		try {
+			newGame.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					sm.stopSounds();
+					table = new TableDummy(new Player(name.getText().toString(), 1000), 20, 2);
+					table.sit(new Player(name.getText().toString()));
 				}
 			});
 		} catch (NullPointerException np) {
