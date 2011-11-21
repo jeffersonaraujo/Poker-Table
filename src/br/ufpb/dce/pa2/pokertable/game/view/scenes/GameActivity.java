@@ -7,7 +7,6 @@ import org.anddev.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.anddev.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.entity.sprite.Sprite;
-import org.anddev.andengine.entity.sprite.TiledSprite;
 import org.anddev.andengine.entity.text.ChangeableText;
 import org.anddev.andengine.opengl.font.Font;
 import org.anddev.andengine.opengl.texture.TextureOptions;
@@ -17,7 +16,6 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
-import br.ufpb.dce.pa2.pokertable.game.view.scenes.R.button;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,9 +25,7 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
-import android.widget.Button;
 import android.widget.Toast;
-import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.Player;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
@@ -65,8 +61,6 @@ public class GameActivity extends BaseGameActivity {
 	// variaveis utilizadas para o sprite do jogador
 	private TextureRegion mPlayerRegion;
 	private BitmapTextureAtlas mPlayerTexture;
-
-	private Boolean sair;
 	
 	//Atributos relacionados a logica do jogo
 	private ITable mytable;
@@ -158,7 +152,7 @@ public class GameActivity extends BaseGameActivity {
 
 	public Scene onLoadScene() {
 		//cria uma mesa de jogo dummy
-		mytable = new TableDummy(new Player("Joao", 1000), 20);		
+		mytable = new TableDummy(new Player("Joao", 1000), 20, 2);		
 		
 		// cria a cena do jogo
 		final Scene scene = new Scene();

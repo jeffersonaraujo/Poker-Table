@@ -1,7 +1,5 @@
 package br.ufpb.dce.pa2.pokertable.model;
 
-import java.util.List;
-
 public class TableDummy implements ITable{
 	private CircularList players;
 	private int dealerPosition;
