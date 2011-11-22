@@ -31,6 +31,12 @@
 			android:configChanges="keyboardHidden|orientation"
 			android:screenOrientation="portrait"
 			android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+		
+		<activity
+			android:name=".HelpActivity"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 			
 	    <activity
 			android:name=".SelectPlayerActivity"

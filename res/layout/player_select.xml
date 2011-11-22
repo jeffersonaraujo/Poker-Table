@@ -74,14 +74,14 @@
 			android:layout_alignParentRight="true"
 			android:layout_below="@+id/nome"></EditText>
 		<Button
-			android:id="@+button/buttonaddplayer"
+			android:id="@+button/buttonnewgame"
 			android:layout_width="140px"
 			android:text = "Start Game"
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:layout_below="@+id/camponome"></Button>
 		<Button
-			android:id="@+button/buttonstartgame"
+			android:id="@+button/buttonaddplayer"
 			android:layout_width="140px"
 			android:text = "Add Player"
 			android:layout_height="wrap_content"

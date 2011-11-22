@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:orientation="vertical" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+|
+<ScrollView android:id="@+id/scrollview" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:layout_weight="1">
+    
+<LinearLayout android:id="@+id/LinearLayout" 
+    android:orientation="vertical" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content">
+    
+<LinearLayout android:orientation="horizontal" 
+    android:layout_width="fill_parent" 
+    android:layout_height="20px"/>
+
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="O PokerTable é um jogo de poker com o estilo Texas Hold'em, onde pode ser jogado por até 4 pessoas."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="O JOGO: Em Texas Hold'em você recebe duas cartas “hole”, cartas que os outros jogadores não conseguem ver. De seguida, cinco cartas são distribuídas abertas na mesa, sucessivamente. São cartas de comunidade que todos os jogadores podem usar para fazer uma mão de cinco cartas. Para fazer a melhor mão possível, você pode usar as suas duas cartas “hole” juntas com três das comunitárias na mesa, ou uma carta “hole ” com quarto cartas da comunidade, ou simplesmente todas as cinco cartas da comunidade. O jogador que faz a mão mais alta ganha o pote."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="BLINDS: Texas Hold'em é jogado com blinds. Antes das cartas serem distribuídas, os primeiros dois jogadores à esquerda do crupiê, depositam um small e big blind respectivamente para começar o pote."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="DISTRIBUIÇÃO: Quando os blinds forem depositados, cada jogador recebe duas cartas fechadas, as cartas “hole”. Então começa a primeira rodada de apostas, começando com o jogador à esquerda do big blind."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="O FLOP: Quando a primeira rodada acabar, três cartas são distribuídas abertas na mesa. Estas cartas são o “flop”. Então começa a segunda rodada de apostas, começando com o primeiro jogador à esquerda do crupiê que ainda está na partida."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="O TURN: Depois da segunda rodada de apostas, a quarta carta de comunidade é distribuída. Esta carta é o turn. Inicia a terceira rodada de apostas, começando com o primeiro jogador à esquerda do crupiê que ainda está na partida."/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
+<TextView
+	android:text=""
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+/>
+</LinearLayout>
+<TextView android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:text="O RIVER: A quinta e última carta de comunidade é o river. Agora a mão é concluída pela quarta e última rodada de apostas, mais uma vez começando com o primeiro jogador à esquerda do crupiê que ainda está na partida. Se mais de um jogador permanece na partida depois das apostas, segue para ver-cartas (showdown)."/>
+</LinearLayout>
+</ScrollView>
+</LinearLayout>
