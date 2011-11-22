@@ -110,7 +110,7 @@ public class GameActivity extends BaseGameActivity {
 
 		// cria um objeto que adiciona a imagem na texture e aponta para ela
 		this.mRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-				this.mTexture, this, "layouttable.png", 0, 0);
+				this.mTexture, this, "layouttablesmall.png", 0, 0);
 
 		// carrega a textura na engine para poder ser usada
 		this.mEngine.getTextureManager().loadTexture(this.mTexture);

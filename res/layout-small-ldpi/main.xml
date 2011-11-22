@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/absoluteLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_x="-1dip"
+    android:layout_y="1dip"
+    android:background="@drawable/master" >
+
+    <RelativeLayout
+        android:id="@+layout/botoeslayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="4px"
+        android:paddingRight="1px" >
+
+        <Button
+            android:id="@+button/buttonnewgame"
+            android:layout_width="110px"
+            android:layout_height="32.5px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/newgame" >
+        </Button>
+
+        <Button
+            android:id="@+button/buttonabout"
+            android:layout_width="110px"
+            android:layout_height="32.5px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+button/buttonnewgame"
+            android:background="@drawable/about" >
+        </Button>
+
+        <Button
+            android:id="@+button/buttonhelp"
+            android:layout_width="110px"
+            android:layout_height="32.5px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+button/buttonabout"
+            android:background="@drawable/help" >
+        </Button>
+
+        <Button
+            android:id="@+button/buttonexit"
+            android:layout_width="110px"
+            android:layout_height="32.5px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+button/buttonhelp"
+            android:background="@drawable/exit" >
+        </Button>
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+button/facebook"
+        android:layout_width="30px"
+        android:layout_height="30px"
+        android:layout_x="14dip"
+        android:layout_y="375dip"
+        android:background="@drawable/facebook" >
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+button/twitter"
+        android:layout_width="30px"
+        android:layout_height="30px"
+        android:layout_x="64dip"
+        android:layout_y="375dip"
+        android:background="@drawable/twitter" >
+    </ImageButton>
+
+</AbsoluteLayout>

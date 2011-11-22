@@ -1,9 +1,6 @@
 package br.ufpb.dce.pa2.pokertable.game.view.scenes;
 
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
-import br.ufpb.dce.pa2.pokertable.model.ITable;
-import br.ufpb.dce.pa2.pokertable.model.Player;
-import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
