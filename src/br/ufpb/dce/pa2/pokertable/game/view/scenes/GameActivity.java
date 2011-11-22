@@ -27,6 +27,7 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
  * Game Activity
@@ -40,7 +41,6 @@ public class GameActivity extends BaseGameActivity {
 	private float cameraWidth;
 	private float cameraHeight;
 	private Camera mCamera;
-	
 
 	// variaveis utilizadas para o sprite da mesa
 	private TextureRegion mRegion;
@@ -58,9 +58,23 @@ public class GameActivity extends BaseGameActivity {
 
 	// variaveis utilizadas para o sprite do jogador
 	private TextureRegion mPlayerRegion;
+	private TextureRegion mPlayerRegion2;
+	private TextureRegion mPlayerRegion3;
+	private TextureRegion mPlayerRegion4;
 	private BitmapTextureAtlas mPlayerTexture;
-	
-	//Atributos relacionados a logica do jogo
+	private BitmapTextureAtlas mPlayerTexture2;
+	private BitmapTextureAtlas mPlayerTexture3;
+	private BitmapTextureAtlas mPlayerTexture4;
+	private static final int PLAYER_1_X = 100;
+	private static final int PLAYER_1_Y = 25;
+	private static final int PLAYER_2_X = 575;
+	private static final int PLAYER_2_Y = 10;
+	private static final int PLAYER_3_X = 670;
+	private static final int PLAYER_3_Y = 350;
+	private static final int PLAYER_4_X = 100;
+	private static final int PLAYER_4_Y = 370;
+
+	// Atributos relacionados a logica do jogo
 	private ITable mytable;
 
 	// carrega a engine
@@ -119,37 +133,96 @@ public class GameActivity extends BaseGameActivity {
 		// chama o som do jogo
 		sm = SoundManager.getInstance(this);
 
-		// cria o objeto de textura dos jogadores
+		// cria o objeto de textura do jogador 1
 		this.mPlayerTexture = new BitmapTextureAtlas(128, 128,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
+		// cria o objeto de textura do jogador 1
+		this.mPlayerTexture2 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
+		// cria o objeto de textura do jogador 1
+		this.mPlayerTexture3 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
+		// cria o objeto de textura do jogador 1
+		this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		
+		System.out.println(TableDummy.getInstance(10).getPlayers().get(0).getPicture());
+		this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance(10).getPlayers().get(0).getPicture(), 0,
+						0);
+		System.out.println(TableDummy.getInstance(10).getPlayers().get(1).getPicture());
+		this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance(10).getPlayers().get(1).getPicture(), 0,
+						0);
+		
+		System.out.println(TableDummy.getInstance(10).getPlayers().get(2).getPicture());
+		this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance(10).getPlayers().get(2).getPicture(), 0,
+						0);
+		
+		System.out.println(TableDummy.getInstance(10).getPlayers().get(3).getPicture());
+		this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance(10).getPlayers().get(3).getPicture(), 0,
+						0);
 
-		switch (SelectPlayerActivity.playerSelect) {
-		case 1:
-			this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-					.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
-							0);
-			break;
-		case 2:
-			this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-					.createFromAsset(this.mPlayerTexture, this, "menone.png",
-							0, 0);
-			break;
-		case 3:
-			this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-					.createFromAsset(this.mPlayerTexture, this, "mentwo.png",
-							0, 0);
-			break;
-		case 4:
-			this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-					.createFromAsset(this.mPlayerTexture, this, "menthree.png",
-							0, 0);
-		}
+//		for(Player p: TableDummy.getInstance(10).getPlayers()){
+//			if(p.getPicture() == 1)
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//					.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
+//						0);
+//			else if(p.getPicture() == 2)
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//					.createFromAsset(this.mPlayerTexture, this, "menone.png", 0,
+//						0);
+//			else if(p.getPicture() == 3)
+//					this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "mentwo.png", 0,
+//							0);
+//			else if(p.getPicture() == 4)
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//					.createFromAsset(this.mPlayerTexture, this, "menthree.png", 0,
+//						0);
+//		}
+		
+//		
+//			switch (p.getPicture()) {
+//			case 1:
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
+//								0);
+//		
+//				this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
+//						0); 
+//				break;
+//			case 2:
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "menone.png",
+//								0, 0);
+//				break;
+//			case 3:
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "mentwo.png",
+//								0, 0);
+//				break;
+//			case 4:
+//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+//						.createFromAsset(this.mPlayerTexture, this, "menthree.png",
+//								0, 0);
+//			}
+//		}
 
 		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture2);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture3);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture4);
 	}
 
-	public Scene onLoadScene() {	
-		
+	public Scene onLoadScene() {
+
 		// cria a cena do jogo
 		final Scene scene = new Scene();
 
@@ -170,10 +243,20 @@ public class GameActivity extends BaseGameActivity {
 		scene.attachChild(scoreText);
 
 		// cria o sprite e posiciona na cadeira da mesa
-		this.mSprite = new Sprite(100, 10, this.mPlayerRegion);
+		this.mSprite = new Sprite(PLAYER_1_X, PLAYER_1_Y, this.mPlayerRegion);
+		// adiciona na cena
+		scene.attachChild(mSprite);
+		this.mSprite = new Sprite(PLAYER_2_X, PLAYER_2_Y, this.mPlayerRegion2);
 		// adiciona na cena
 		scene.attachChild(mSprite);
 		
+		this.mSprite = new Sprite(PLAYER_3_X, PLAYER_3_Y, this.mPlayerRegion3);
+		// adiciona na cena
+		scene.attachChild(mSprite);
+		
+		this.mSprite = new Sprite(PLAYER_4_X, PLAYER_4_Y, this.mPlayerRegion4);
+		// adiciona na cena
+		scene.attachChild(mSprite);
 
 		// retorna a cena para a engine ser executada
 		return scene;

@@ -1,6 +1,8 @@
 package br.ufpb.dce.pa2.pokertable.model;
 
-public class TableDummy implements ITable{
+import java.util.List;
+
+public class TableDummy implements ITable {
 	private static TableDummy tableDummySingleton;
 	private CircularList players;
 	private int dealerPosition;
@@ -33,31 +35,31 @@ public class TableDummy implements ITable{
 	}
 
 	@Override
-	public void begin() {		
+	public void begin() {
 
 	}
 
 	@Override
 	public void sit(Player player) {
 		this.players.add(player);
-		//this.playersOnTurn.add(player);
-		//autoBlind(player);
+		// this.playersOnTurn.add(player);
+		// autoBlind(player);
 	}
 
-	public void autoBlind(Player player){
-		if(player.equals(players.next(dealerPosition))){
-			if(player.getMoney() >= getSmallBlindBet()){
+	public void autoBlind(Player player) {
+		if (player.equals(players.next(dealerPosition))) {
+			if (player.getMoney() >= getSmallBlindBet()) {
 				player.subMoney(getSmallBlindBet());
 				currentTurnPot += getSmallBlindBet();
-			} else{
+			} else {
 				player.subMoney(player.getMoney());
 				currentTurnPot += player.getMoney();
 			}
-		} else if(player.equals(players.next(dealerPosition + 1))){
-			if(player.getMoney() >= getBigBlindBet()){
+		} else if (player.equals(players.next(dealerPosition + 1))) {
+			if (player.getMoney() >= getBigBlindBet()) {
 				player.subMoney(getBigBlindBet());
 				currentTurnPot += getBigBlindBet();
-			} else{
+			} else {
 				player.subMoney(player.getMoney());
 				currentTurnPot += player.getMoney();
 			}
@@ -71,18 +73,20 @@ public class TableDummy implements ITable{
 
 	@Override
 	public int getSmallBlindPosition() {
-		/*if(getDealerPosition() < players.size() - 1)
-			return getDealerPosition() + 1;
-		else*/
+		/*
+		 * if(getDealerPosition() < players.size() - 1) return
+		 * getDealerPosition() + 1; else
+		 */
 		return 0;
 	}
 
 	@Override
 	public int getBigBlindPosition() {
-		/*if(getSmallBlindPosition() < players.size() - 1)
-			return getSmallBlindPosition() + 1;
-		else*/
-			return 0;
+		/*
+		 * if(getSmallBlindPosition() < players.size() - 1) return
+		 * getSmallBlindPosition() + 1; else
+		 */
+		return 0;
 	}
 
 	@Override
@@ -116,11 +120,11 @@ public class TableDummy implements ITable{
 	}
 
 	@Override
-	public void nextPlayer(){
-		if(currentPlayerPosition == 1)
+	public void nextPlayer() {
+		if (currentPlayerPosition == 1)
 			nextTurn();
 
-		if(currentPlayerPosition < playersOnTurn.size() - 1)
+		if (currentPlayerPosition < playersOnTurn.size() - 1)
 			currentPlayerPosition++;
 		else
 			currentPlayerPosition = 0;
@@ -130,10 +134,13 @@ public class TableDummy implements ITable{
 	public void bet(int value) {
 		Player currentPlayer = playersOnTurn.get(currentPlayerPosition);
 		int betValue;
-		if(getCurrentTurnBet() + minimumBet - getCurrentTurnPlayerBet(currentPlayer) > currentPlayer.getMoney())
+		if (getCurrentTurnBet() + minimumBet
+				- getCurrentTurnPlayerBet(currentPlayer) > currentPlayer
+					.getMoney())
 			betValue = currentPlayer.getMoney();
 		else
-			betValue = getCurrentTurnPlayerBet(currentPlayer) + minimumBet - getCurrentTurnBet();
+			betValue = getCurrentTurnPlayerBet(currentPlayer) + minimumBet
+					- getCurrentTurnBet();
 
 		currentPlayer.setMoney(currentPlayer.getMoney() - betValue);
 		currentTurnPot += betValue;
@@ -143,13 +150,20 @@ public class TableDummy implements ITable{
 	public void call() {
 		Player currentPlayer = playersOnTurn.get(currentPlayerPosition);
 		int callValue;
-		if(getCurrentTurnBet() - getCurrentTurnPlayerBet(currentPlayer) > currentPlayer.getMoney())
+		if (getCurrentTurnBet() - getCurrentTurnPlayerBet(currentPlayer) > currentPlayer
+				.getMoney())
 			callValue = currentPlayer.getMoney();
 		else
-			callValue = getCurrentTurnPlayerBet(currentPlayer) - getCurrentTurnBet();
+			callValue = getCurrentTurnPlayerBet(currentPlayer)
+					- getCurrentTurnBet();
 
 		currentPlayer.setMoney(currentPlayer.getMoney() - callValue);
 		currentTurnPot += callValue;
+	}
+
+	@Override
+	public List<Player> getPlayers() {
+		return players.getPlayers();
 	}
 
 	@Override
@@ -184,13 +198,13 @@ public class TableDummy implements ITable{
 	public boolean EndOfTheGame() {
 		return false;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return players.toString();
 	}
-	
-	public static ITable getInstance(int minimumBet){
-		if(tableDummySingleton == null){
+
+	public static ITable getInstance(int minimumBet) {
+		if (tableDummySingleton == null) {
 			tableDummySingleton = new TableDummy(minimumBet);
 		}
 		return tableDummySingleton;

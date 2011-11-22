@@ -1,5 +1,7 @@
 package br.ufpb.dce.pa2.pokertable.model;
 
+import java.util.List;
+
 /**
  * 
  * @author Vicente Neto
@@ -130,4 +132,6 @@ public interface ITable {
 	 * @return true if the game is over and False if the game is not over
 	 */
 	boolean EndOfTheGame();
+	
+	public List<Player> getPlayers();
 }

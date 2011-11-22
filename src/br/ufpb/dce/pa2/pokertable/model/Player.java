@@ -3,17 +3,17 @@ package br.ufpb.dce.pa2.pokertable.model;
 public class Player{
 	private String name;	
 	private int money;
-	private int picture;
+	private String picture;
 		
 	public Player(){
-		this("Player",0, 1);
+		this("Player",0, "menone.png");
 	}
 	
-	public Player(String nome, int picture){
+	public Player(String nome, String picture){
 		this(nome, 0, picture);
 	}
 	
-	public Player(String name, int money, int picture) {
+	public Player(String name, int money, String picture) {
 		this.name = name;
 		this.money = money;
 		this.picture = picture;
@@ -39,11 +39,11 @@ public class Player{
 		this.money = this.money - value;
 	}
 
-	public int getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(int picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}	
 }

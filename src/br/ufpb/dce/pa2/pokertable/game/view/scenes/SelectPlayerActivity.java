@@ -5,7 +5,6 @@ import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.Player;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 /**
  * Main Activity
@@ -32,6 +30,7 @@ public class SelectPlayerActivity extends Activity {
 	private int cont;
 
 	public static int playerSelect;
+	private String pictureName;
 	public static boolean mute;
 	private static SoundManager sm;
 	
@@ -64,7 +63,8 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					playerSelect = 1;
+					//playerSelect = 1;
+					pictureName = "girl.png";
 				}
 			});
 		} catch (NullPointerException np) {
@@ -76,7 +76,8 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					playerSelect = 2;
+					//playerSelect = 2;
+					pictureName = "menone.png";
 				}
 			});
 		} catch (NullPointerException np) {
@@ -88,7 +89,8 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					playerSelect = 3;
+					//playerSelect = 3;
+					pictureName = "mentwo.png";
 				}
 			});
 		} catch (NullPointerException np) {
@@ -100,7 +102,8 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					playerSelect = 4;
+					//playerSelect = 4;
+					pictureName = "menthree.png";
 				}
 			});
 		} catch (NullPointerException np) {
@@ -146,7 +149,7 @@ public class SelectPlayerActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					sm.stopSounds();
-					Player player = new Player(name.getText().toString(), playerSelect);
+					Player player = new Player(name.getText().toString(), pictureName);
 					table.sit(player);
 					System.out.println("Adicionou ......");
 				}
