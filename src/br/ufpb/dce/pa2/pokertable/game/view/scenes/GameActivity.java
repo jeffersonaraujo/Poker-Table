@@ -78,7 +78,7 @@ public class GameActivity extends BaseGameActivity {
 
 	// carrega a engine
 	public Engine onLoadEngine() {
-
+		setContentView(R.layout.table);
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		// se adapta a tela de qualquer aparelho
