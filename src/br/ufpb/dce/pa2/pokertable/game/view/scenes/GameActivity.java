@@ -26,6 +26,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.PlayerEngine;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
@@ -56,6 +57,8 @@ public class GameActivity extends BaseGameActivity {
 	private Boolean sair;
 
 	// variaveis utilizadas para o sprite do jogador
+	private PlayerEngine player;
+	
 	private TextureRegion mPlayerRegion;
 	private TextureRegion mPlayerRegion2;
 	private TextureRegion mPlayerRegion3;
@@ -72,9 +75,6 @@ public class GameActivity extends BaseGameActivity {
 	private static final int PLAYER_3_Y = 350;
 	private static final int PLAYER_4_X = 100;
 	private static final int PLAYER_4_Y = 370;
-
-	// Atributos relacionados a logica do jogo
-	private ITable mytable;
 
 	// carrega a engine
 	public Engine onLoadEngine() {
@@ -101,7 +101,7 @@ public class GameActivity extends BaseGameActivity {
 
 		// cria o objeto de textura, que é onde guardamos as imagens.
 		// esses valores tem que ser na base de 2 (2, 4, 8 ...)
-		this.mTexture = new BitmapTextureAtlas(1024, 1024,
+		this.mTexture = new BitmapTextureAtlas(128, 128,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		// define um caminho padrao dentro da pasta /assets para as imagens
@@ -109,7 +109,7 @@ public class GameActivity extends BaseGameActivity {
 
 		// cria um objeto que adiciona a imagem na texture e aponta para ela
 		this.mRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-				this.mTexture, this, "layouttablesmall.png", 0, 0);
+				this.mTexture, this, "pote.png", 0, 0);
 
 		// carrega a textura na engine para poder ser usada
 		this.mEngine.getTextureManager().loadTexture(this.mTexture);
@@ -131,93 +131,9 @@ public class GameActivity extends BaseGameActivity {
 
 		// chama o som do jogo
 		sm = SoundManager.getInstance(this);
-
-		// cria o objeto de textura do jogador 1
-		this.mPlayerTexture = new BitmapTextureAtlas(128, 128,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		
-		// cria o objeto de textura do jogador 1
-		this.mPlayerTexture2 = new BitmapTextureAtlas(128, 128,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		
-		// cria o objeto de textura do jogador 1
-		this.mPlayerTexture3 = new BitmapTextureAtlas(128, 128,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		
-		// cria o objeto de textura do jogador 1
-		this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-		
-		System.out.println(TableDummy.getInstance().getPlayers().get(0).getPicture());
-		this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance().getPlayers().get(0).getPicture(), 0,
-						0);
-		System.out.println(TableDummy.getInstance().getPlayers().get(1).getPicture());
-		this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance().getPlayers().get(1).getPicture(), 0,
-						0);
-		
-		System.out.println(TableDummy.getInstance().getPlayers().get(2).getPicture());
-		this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance().getPlayers().get(2).getPicture(), 0,
-						0);
-		
-		System.out.println(TableDummy.getInstance().getPlayers().get(3).getPicture());
-		this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance().getPlayers().get(3).getPicture(), 0,
-						0);
-
-//		for(Player p: TableDummy.getInstance(10).getPlayers()){
-//			if(p.getPicture() == 1)
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//					.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
-//						0);
-//			else if(p.getPicture() == 2)
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//					.createFromAsset(this.mPlayerTexture, this, "menone.png", 0,
-//						0);
-//			else if(p.getPicture() == 3)
-//					this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "mentwo.png", 0,
-//							0);
-//			else if(p.getPicture() == 4)
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//					.createFromAsset(this.mPlayerTexture, this, "menthree.png", 0,
-//						0);
-//		}
-		
-//		
-//			switch (p.getPicture()) {
-//			case 1:
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
-//								0);
-//		
-//				this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "girl.png", 0,
-//						0); 
-//				break;
-//			case 2:
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "menone.png",
-//								0, 0);
-//				break;
-//			case 3:
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "mentwo.png",
-//								0, 0);
-//				break;
-//			case 4:
-//				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-//						.createFromAsset(this.mPlayerTexture, this, "menthree.png",
-//								0, 0);
-//			}
-//		}
-
-		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
-		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture2);
-		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture3);
-		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture4);
+		// carrega os jogadores na mesa
+		onLoadPlayers();
 	}
 
 	public Scene onLoadScene() {
@@ -308,6 +224,46 @@ public class GameActivity extends BaseGameActivity {
 		super.onPause();
 		setResult(RESULT_CANCELED);
 		finish();
+	}
+	
+	public void onLoadPlayers(){
+		// cria o objeto de textura do jogador 1
+				this.mPlayerTexture = new BitmapTextureAtlas(128, 128,
+						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+				
+				// cria o objeto de textura do jogador 2
+				this.mPlayerTexture2 = new BitmapTextureAtlas(128, 128,
+						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+				
+				// cria o objeto de textura do jogador 3
+				this.mPlayerTexture3 = new BitmapTextureAtlas(128, 128,
+						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+				
+				// cria o objeto de textura do jogador 4
+				this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
+						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+				
+				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+						.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance().getPlayers().get(0).getPicture(), 0,
+								0);
+				
+				this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
+						.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance().getPlayers().get(1).getPicture(), 0,
+								0);
+				
+				this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
+						.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance().getPlayers().get(2).getPicture(), 0,
+								0);
+				
+				this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
+						.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance().getPlayers().get(3).getPicture(), 0,
+								0);
+
+				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
+				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture2);
+				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture3);
+				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture4);
+		
 	}
 
 	public Boolean getSair() {
