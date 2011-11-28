@@ -25,7 +25,6 @@ import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
-import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.PlayerEngine;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
@@ -42,9 +41,9 @@ public class GameActivity extends BaseGameActivity {
 	private float cameraHeight;
 	private Camera mCamera;
 
-	// variaveis utilizadas para o sprite da mesa
-	private TextureRegion mRegion;
-	private BitmapTextureAtlas mTexture;
+	// variaveis utilizadas para o sprite do pote
+	private TextureRegion mRegionPote;
+	private BitmapTextureAtlas mPoteTexture;
 	private Sprite mSprite;
 
 	// variaveis utilizadas para o sprite do Score
@@ -52,13 +51,18 @@ public class GameActivity extends BaseGameActivity {
 	private ChangeableText scoreText;
 	private Font mFont;
 
+	// variaveis utilizadas para o pote
+	private BitmapTextureAtlas mFontPoteTexture;
+	private ChangeableText poteText;
+	private Font mFontPote;
+
 	// variavel utilizadas para o som
 	private static SoundManager sm;
 	private Boolean sair;
 
 	// variaveis utilizadas para o sprite do jogador
 	private PlayerEngine player;
-	
+
 	private TextureRegion mPlayerRegion;
 	private TextureRegion mPlayerRegion2;
 	private TextureRegion mPlayerRegion3;
@@ -78,7 +82,6 @@ public class GameActivity extends BaseGameActivity {
 
 	// carrega a engine
 	public Engine onLoadEngine() {
-		setContentView(R.layout.table);
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		// se adapta a tela de qualquer aparelho
@@ -98,40 +101,24 @@ public class GameActivity extends BaseGameActivity {
 
 	// carrega os recursos alocados
 	public void onLoadResources() {
-
-		// cria o objeto de textura, que é onde guardamos as imagens.
-		// esses valores tem que ser na base de 2 (2, 4, 8 ...)
-		this.mTexture = new BitmapTextureAtlas(128, 128,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-
+		// setContentView(R.layout.table);
+		
 		// define um caminho padrao dentro da pasta /assets para as imagens
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-
-		// cria um objeto que adiciona a imagem na texture e aponta para ela
-		this.mRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-				this.mTexture, this, "pote.png", 0, 0);
-
-		// carrega a textura na engine para poder ser usada
-		this.mEngine.getTextureManager().loadTexture(this.mTexture);
-
-		// Carrega os recursos da fonte de Score
-		this.mFontTexture = new BitmapTextureAtlas(256, 256,
-				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-
-		// Define as propriedades da fonte
-		this.mFont = new Font(this.mFontTexture, Typeface.create(
-				Typeface.DEFAULT, Typeface.BOLD), 20, true, Color.WHITE);
-
-		this.mEngine.getFontManager().loadFont(this.mFont);
-
-		// carrega a textura da fonte na engine para poder ser usada
-		this.mEngine.getTextureManager().loadTexture(this.mFontTexture);
-
+		
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
 		// chama o som do jogo
 		sm = SoundManager.getInstance(this);
 		
+		// carrega o pote na mesa
+		onLoadPot();
+
+		// carrega os dados do score na mesa
+		onLoadFontScore();
+
+		// carrega os dados do pote na mesa
+		onLoadFontPot();
+
 		// carrega os jogadores na mesa
 		onLoadPlayers();
 	}
@@ -141,14 +128,14 @@ public class GameActivity extends BaseGameActivity {
 		// cria a cena do jogo
 		final Scene scene = new Scene();
 
-		// centraliza o sprite no meio da tela
-		float centerX = (cameraWidth - this.mRegion.getWidth()) / 2;
-		float centerY = (cameraHeight - this.mRegion.getHeight()) / 2;
+		// centraliza o sprite do pote no meio da tela
+		float centerX = (cameraWidth - this.mRegionPote.getWidth()) / 2;
+		float centerY = (cameraHeight - this.mRegionPote.getHeight()) / 2;
 
-		// cria o sprite e posiciona no meio da tela
-		this.mSprite = new Sprite(centerX, centerY, this.mRegion);
+		// cria o sprite do pote e posiciona no meio da tela
+		this.mSprite = new Sprite(centerX, centerY, this.mRegionPote);
 
-		// adiciona na cena
+		// adiciona o pote na cena
 		scene.attachChild(mSprite);
 
 		// cria o texto do Score
@@ -157,18 +144,25 @@ public class GameActivity extends BaseGameActivity {
 		// adiciona na cena
 		scene.attachChild(scoreText);
 
+		// cria o texto do Pote
+		this.poteText = new ChangeableText(380, 200, this.mFontPote, "10");
+
+		// adiciona na cena
+		scene.attachChild(poteText);
+
 		// cria o sprite e posiciona na cadeira da mesa
 		this.mSprite = new Sprite(PLAYER_1_X, PLAYER_1_Y, this.mPlayerRegion);
+		mSprite.setZIndex(100);
 		// adiciona na cena
 		scene.attachChild(mSprite);
 		this.mSprite = new Sprite(PLAYER_2_X, PLAYER_2_Y, this.mPlayerRegion2);
 		// adiciona na cena
 		scene.attachChild(mSprite);
-		
+
 		this.mSprite = new Sprite(PLAYER_3_X, PLAYER_3_Y, this.mPlayerRegion3);
 		// adiciona na cena
 		scene.attachChild(mSprite);
-		
+
 		this.mSprite = new Sprite(PLAYER_4_X, PLAYER_4_Y, this.mPlayerRegion4);
 		// adiciona na cena
 		scene.attachChild(mSprite);
@@ -225,45 +219,88 @@ public class GameActivity extends BaseGameActivity {
 		setResult(RESULT_CANCELED);
 		finish();
 	}
-	
-	public void onLoadPlayers(){
-		// cria o objeto de textura do jogador 1
-				this.mPlayerTexture = new BitmapTextureAtlas(128, 128,
-						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-				
-				// cria o objeto de textura do jogador 2
-				this.mPlayerTexture2 = new BitmapTextureAtlas(128, 128,
-						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-				
-				// cria o objeto de textura do jogador 3
-				this.mPlayerTexture3 = new BitmapTextureAtlas(128, 128,
-						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-				
-				// cria o objeto de textura do jogador 4
-				this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
-						TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-				
-				this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-						.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance().getPlayers().get(0).getPicture(), 0,
-								0);
-				
-				this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
-						.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance().getPlayers().get(1).getPicture(), 0,
-								0);
-				
-				this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
-						.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance().getPlayers().get(2).getPicture(), 0,
-								0);
-				
-				this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
-						.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance().getPlayers().get(3).getPicture(), 0,
-								0);
 
-				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
-				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture2);
-				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture3);
-				this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture4);
-		
+	private void onLoadFontScore() {
+		// Carrega os recursos da fonte de Score
+		this.mFontTexture = new BitmapTextureAtlas(256, 256,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		// Define as propriedades da fonte
+		this.mFont = new Font(this.mFontTexture, Typeface.create(
+				Typeface.DEFAULT, Typeface.BOLD), 20, true, Color.WHITE);
+
+		this.mEngine.getFontManager().loadFont(this.mFont);
+
+		// carrega a textura da fonte na engine para poder ser usada
+		this.mEngine.getTextureManager().loadTexture(this.mFontTexture);
+	}
+
+	private void onLoadFontPot() {
+		// Carrega os recursos da fonte do Pote
+		this.mFontPoteTexture = new BitmapTextureAtlas(64, 64,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		// Define as propriedades da fonte do pote
+		this.mFontPote = new Font(this.mFontPoteTexture, Typeface.create(
+				Typeface.DEFAULT, Typeface.BOLD), 15, true, Color.WHITE);
+
+		this.mEngine.getFontManager().loadFont(this.mFontPote);
+
+		// carrega a textura da fonte na engine para poder ser usada
+		this.mEngine.getTextureManager().loadTexture(this.mFontPoteTexture);
+	}
+
+	private void onLoadPlayers() {
+		// cria o objeto de textura do jogador 1
+		this.mPlayerTexture = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		// cria o objeto de textura do jogador 2
+		this.mPlayerTexture2 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		// cria o objeto de textura do jogador 3
+		this.mPlayerTexture3 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		// cria o objeto de textura do jogador 4
+		this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture, this, TableDummy
+						.getInstance().getPlayers().get(0).getPicture(), 0, 0);
+
+		this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture2, this, TableDummy
+						.getInstance().getPlayers().get(1).getPicture(), 0, 0);
+
+		this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture3, this, TableDummy
+						.getInstance().getPlayers().get(2).getPicture(), 0, 0);
+
+		this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
+				.createFromAsset(this.mPlayerTexture4, this, TableDummy
+						.getInstance().getPlayers().get(3).getPicture(), 0, 0);
+
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture2);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture3);
+		this.mEngine.getTextureManager().loadTexture(this.mPlayerTexture4);
+
+	}
+
+	private void onLoadPot() {
+		// cria o objeto de textura.
+		// esses valores tem que ser na base de 2 (2, 4, 8 ...)
+		this.mPoteTexture = new BitmapTextureAtlas(128, 128,
+				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		// cria um objeto que adiciona a imagem na texture e aponta para ela
+		this.mRegionPote = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+				this.mPoteTexture, this, "pote.png", 0, 0);
+
+		// carrega a textura na engine
+		this.mEngine.getTextureManager().loadTexture(this.mPoteTexture);
+
 	}
 
 	public Boolean getSair() {
