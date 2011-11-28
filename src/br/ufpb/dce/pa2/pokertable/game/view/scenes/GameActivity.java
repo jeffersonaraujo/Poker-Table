@@ -15,8 +15,6 @@ import org.anddev.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextur
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 import org.anddev.andengine.ui.activity.BaseGameActivity;
 
-import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +24,7 @@ import android.media.AudioManager;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import br.ufpb.dce.pa2.pokertable.model.ITable;
 import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
@@ -149,23 +148,23 @@ public class GameActivity extends BaseGameActivity {
 		this.mPlayerTexture4 = new BitmapTextureAtlas(128, 128,
 				TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 		
-		System.out.println(TableDummy.getInstance(10).getPlayers().get(0).getPicture());
+		System.out.println(TableDummy.getInstance().getPlayers().get(0).getPicture());
 		this.mPlayerRegion = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance(10).getPlayers().get(0).getPicture(), 0,
+				.createFromAsset(this.mPlayerTexture, this, TableDummy.getInstance().getPlayers().get(0).getPicture(), 0,
 						0);
-		System.out.println(TableDummy.getInstance(10).getPlayers().get(1).getPicture());
+		System.out.println(TableDummy.getInstance().getPlayers().get(1).getPicture());
 		this.mPlayerRegion2 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance(10).getPlayers().get(1).getPicture(), 0,
+				.createFromAsset(this.mPlayerTexture2, this, TableDummy.getInstance().getPlayers().get(1).getPicture(), 0,
 						0);
 		
-		System.out.println(TableDummy.getInstance(10).getPlayers().get(2).getPicture());
+		System.out.println(TableDummy.getInstance().getPlayers().get(2).getPicture());
 		this.mPlayerRegion3 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance(10).getPlayers().get(2).getPicture(), 0,
+				.createFromAsset(this.mPlayerTexture3, this, TableDummy.getInstance().getPlayers().get(2).getPicture(), 0,
 						0);
 		
-		System.out.println(TableDummy.getInstance(10).getPlayers().get(3).getPicture());
+		System.out.println(TableDummy.getInstance().getPlayers().get(3).getPicture());
 		this.mPlayerRegion4 = BitmapTextureAtlasTextureRegionFactory
-				.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance(10).getPlayers().get(3).getPicture(), 0,
+				.createFromAsset(this.mPlayerTexture4, this, TableDummy.getInstance().getPlayers().get(3).getPicture(), 0,
 						0);
 
 //		for(Player p: TableDummy.getInstance(10).getPlayers()){

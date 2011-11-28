@@ -1,6 +1,5 @@
 package br.ufpb.dce.pa2.pokertable.game.view.scenes;
 
-import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
@@ -12,6 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import br.ufpb.dce.pa2.pokertable.game.util.SoundManager;
+import br.ufpb.dce.pa2.pokertable.model.ITable;
+import br.ufpb.dce.pa2.pokertable.model.Player;
+import br.ufpb.dce.pa2.pokertable.model.TableDummy;
 
 /**
  * Main Activity
@@ -50,7 +53,8 @@ public class SelectPlayerActivity extends Activity {
 		newGame = (Button) findViewById(R.button.buttonnewgame); 
 		name = (EditText) findViewById(R.id.camponome);
 		
-		table = TableDummy.getInstance(200);
+		table = TableDummy.getInstance();
+		table.setMinimumBet(200);
 
 		// toca a musica inicial
 		sm.playSound(0);
